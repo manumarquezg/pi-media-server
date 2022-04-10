@@ -3,3 +3,8 @@ rtorrent/config/*
 rtorrent/downloads/*
 !rtorrent/config/.gitkeep
 !rtorrent/downloads/.gitkeep
+
+# homer
+homer/assets/*
+!homer/assets/config.yml
+!homer/assets/applications/
