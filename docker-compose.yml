@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+  plex:
+    image: jaymoulin/plex:latest
+    ports:
+      - 32400:32400
+      - 33400:33400
+    volumes:
+      - /mnt/media:/media
+    restart: always
+    network_mode: "host"
+
+  rtorrent:
+    image: lsioarmhf/rutorrent
+    ports:
+      - 3080:80
+      - 5000:5000
+      - 51413:51413
+      - 6881:6881/udp
+    volumes:
+      - ./rtorrent/config:/config
+      - ./rtorrent/downloads:/downloads
+    environment:
+      - PUID=1000
+      - PGID=1000
+    restart: always

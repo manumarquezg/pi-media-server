@@ -1,0 +1,5 @@
+# rTorrent config files and downloads
+rtorrent/config/*
+rtorrent/downloads/*
+!rtorrent/config/.gitkeep
+!rtorrent/downloads/.gitkeep
