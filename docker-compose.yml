@@ -2,39 +2,46 @@ version: "2"
 
 services:
   plex:
-    image: jaymoulin/plex:latest
-    ports:
-      - 32400:32400
-      - 33400:33400
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
     volumes:
-      - /mnt/media:/media
-    restart: always
-    network_mode: "host"
+      - /mnt/media/config:/config
+      - /mnt/media/Documentales:/tv
+      - /mnt/media/Peliculas:/movies
+    restart: unless-stopped
 
-  rtorrent:
-    image: lsioarmhf/rutorrent
+  rutorrent:
+    image: ghcr.io/linuxserver/rutorrent
+    container_name: rutorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./rtorrent/config:/config
+      - /mnt/media/Downloads:/downloads
     ports:
       - 3080:80
       - 5000:5000
       - 51413:51413
       - 6881:6881/udp
-    volumes:
-      - ./rtorrent/config:/config
-      - ./rtorrent/downloads:/downloads
-    environment:
-      - PUID=1000
-      - PGID=1000
-    restart: always
+    restart: unless-stopped
 
   heimdall:
     image: lscr.io/linuxserver/heimdall:latest
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./heimdall:/config
+    container_name: heimdall
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Madrid
+    volumes:
+      - ./heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
     restart: unless-stopped
