@@ -84,5 +84,4 @@ docker-compose up -d
 
 Check the Raspberry IP in the local network (`192.168.1.*`) using `ifconfig` and go to `http://<RASPBERRY_IP>/`.
 
-![homepage](https://user-images.githubusercontent.com/97598857/162627280-5fd41e7d-710a-4491-938f-fb1c62c1a610.PNG)
-
+![Heimdall dashboard](./.images/heimdall-dashboard.PNG)
