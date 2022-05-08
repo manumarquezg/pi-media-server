@@ -4,7 +4,11 @@ rtorrent/downloads/*
 !rtorrent/config/.gitkeep
 !rtorrent/downloads/.gitkeep
 
-# homer
-homer/assets/*
-!homer/assets/config.yml
-!homer/assets/applications/
+# Heimdall
+heimdall/custom-cont-init.d/
+heimdall/custom-services.d/
+heimdall/keys/
+heimdall/log/
+heimdall/nginx/
+heimdall/php/
+heimdall/www/SupportedApps/searchproviders.yaml

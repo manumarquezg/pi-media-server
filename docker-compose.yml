@@ -26,13 +26,15 @@ services:
       - PGID=1000
     restart: always
 
-  homer:
-    image: b4bz/homer:latest
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
     ports:
-      - 80:8080
+      - 80:80
+      - 443:443
     volumes:
-      - ./homer/assets/:/www/assets
+      - ./heimdall:/config
     environment:
-      - UID=1000
-      - GID=1000
-    restart: always
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    restart: unless-stopped
